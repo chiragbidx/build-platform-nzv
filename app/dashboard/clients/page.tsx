@@ -3,7 +3,7 @@ import { clients } from "@/lib/db/schema";
 import { getAuthSession } from "@/lib/auth/session";
 import { Table, TableHead, TableRow, TableCell, TableHeader, TableBody } from "@/components/ui/table";
 import ClientModals from "./ClientModals";
-import { eq } from "drizzle-orm";
+import { eq, desc } from "drizzle-orm";
 
 // FORCE DYNAMIC (runtime data)
 export const dynamic = "force-dynamic";
@@ -19,7 +19,7 @@ export default async function ClientsDashboard() {
     .select()
     .from(clients)
     .where(eq(clients.teamId, session.teamId))
-    .orderBy(clients.createdAt.desc());
+    .orderBy(desc(clients.createdAt));
 
   return (
     <div className="max-w-5xl mx-auto py-10 px-4">
