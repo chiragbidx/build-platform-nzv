@@ -11,6 +11,7 @@ import {
   Users,
   CreditCard,
   Briefcase,
+  FolderKanban,
 } from "lucide-react";
 import {
   Collapsible,
@@ -34,6 +35,11 @@ const sections: { title: string; items: NavItem[] }[] = [
         label: "Clients",
         href: "/dashboard/clients",
         icon: Briefcase,
+      },
+      {
+        label: "Projects",
+        href: "/dashboard/projects",
+        icon: FolderKanban,
       },
       {
         label: "Feature",
