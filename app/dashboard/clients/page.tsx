@@ -3,6 +3,7 @@ import { clients } from "@/lib/db/schema";
 import { getAuthSession } from "@/lib/auth/session";
 import { Table, TableHead, TableRow, TableCell, TableHeader, TableBody } from "@/components/ui/table";
 import ClientModals from "./ClientModals";
+import { eq } from "drizzle-orm";
 
 // FORCE DYNAMIC (runtime data)
 export const dynamic = "force-dynamic";
@@ -17,7 +18,7 @@ export default async function ClientsDashboard() {
   const rows = await db
     .select()
     .from(clients)
-    .where(clients.teamId.eq(session.teamId))
+    .where(eq(clients.teamId, session.teamId))
     .orderBy(clients.createdAt.desc());
 
   return (
